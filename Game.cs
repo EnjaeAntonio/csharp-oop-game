@@ -9,6 +9,7 @@ namespace OOPGameAssignment
     public class Game
     {
         private Hero hero;
+        private Monster monster;
         public List<Monster> Monster = new List<Monster>
     {
         new Monster("Goblin", 10, 5, 20),
@@ -17,7 +18,7 @@ namespace OOPGameAssignment
         new Monster("Dragon", 40, 20, 150),
         new Monster("Demon", 50, 25, 200)
     };
-        private List<Weapon> weapons = new List<Weapon>
+        private List<Weapon> Weapons = new List<Weapon>
     {
         new Weapon("Dagger", 5),
         new Weapon("Sword", 10),
@@ -25,7 +26,7 @@ namespace OOPGameAssignment
         new Weapon("Axe", 20),
         new Weapon("Greatsword", 25)
     };
-        private List<Armour> armours = new List<Armour>
+        private List<Armour> Armours = new List<Armour>
     {
         new Armour("Leather", 5),
         new Armour("Chainmail", 10),
@@ -44,16 +45,46 @@ namespace OOPGameAssignment
             Console.WriteLine($"Welcome to the game!");
             Console.WriteLine("Please State your name!");
             hero.Name = Console.ReadLine();
+
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("--- Main Menu ---");
+                Console.WriteLine("1. Start Fight!");
+                Console.WriteLine("2. Inventory");
+                Console.WriteLine("3. Stats");
+                Console.WriteLine("4. Quit");
+                Console.WriteLine("Enter your choice");
+
+                int choice = Int32.Parse(Console.ReadLine());
+                switch(choice)
+                {
+                    case 1:
+                        Console.WriteLine("Choose a monster to fight!");
+                        break;
+                }
+            }
         }
 
-        private void MainMenu()
+        private void FightSequence()
         {
-            Console.WriteLine("Main Menu:");
-            Console.WriteLine("1. Display Statistics");
-            Console.WriteLine("2. Display Inventory");
-            Console.WriteLine("3. Fight");
-            Console.WriteLine("Please choose an option:");
-
+            while (hero.CurrentHealth> 0 && monster.CurrentHealth > 0) 
+            {
+                Fight.HeroTurn();
+                if(monster.CurrentHealth > 0)
+                {
+                    Fight.MonsterTurn();
+                }
+            }
+            if (hero.CurrentHealth <= 0)
+            {
+                Fight.Lose();
+            }
+            else if (monster.CurrentHealth <= 0)
+            {
+                Fight.Win();
+            }
         }
 
     }
