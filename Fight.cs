@@ -32,15 +32,6 @@ namespace OOPGameAssignment
                     Monster.CurrentHealth -= damage;
                     Console.WriteLine($"{Hero.Name} deals {damage} damage to {Monster.Name}!");
                     Console.WriteLine($"{Monster.Name} has {Monster.CurrentHealth} health remaining");
-                    if(Monster.CurrentHealth <= 0)
-                    {
-                        Win();
-                        break;
-                    } else if ( Hero.CurrentHealth <= 0)
-                    {
-                        Lose();
-                        break;
-                    }
                     break;
                 case 2:
                     if (potion > 0)
@@ -66,14 +57,13 @@ namespace OOPGameAssignment
             Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
         }
 
+
         public void Win()
         {
             if (Monster.CurrentHealth <= 0)
             {
                 Console.WriteLine($"{Hero.Name} has defeated {Monster.Name} in an epic battle!");
-                Hero.CurrentHealth = Hero.OriginalHealth;
             }
-                Monster.CurrentHealth = Monster.OriginalHealth;
         }
 
         public void Lose()
@@ -81,10 +71,8 @@ namespace OOPGameAssignment
             if (Hero.CurrentHealth <= 0)
             {
                 Console.WriteLine($"{Hero.Name} has been defeated by {Monster.Name}");
-                Hero.CurrentHealth = Hero.OriginalHealth;
-                
             }
-            Monster.CurrentHealth = Monster.OriginalHealth;
         }
+
     }
 }
