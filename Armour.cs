@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace OOPGameAssignment
 {
-    internal class Armor
+    public class Armour
     {
+        public string Name { get; set; }
+        public int ArmourPower { get; set; }
+
+        public Armour(string name, int armourPower)
+        {
+            Name = name;
+            ArmourPower = armourPower;
+        }
     }
 }
