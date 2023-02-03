@@ -8,22 +8,20 @@ namespace OOPGameAssignment
 {
     public class Hero
     {
-        private int _baseStrength = 0;
-        private int _baseDefence = 0;
-        
         public string Name { get; set; }
-        public int BaseStrength { get { return _baseStrength ; } }
-        public int BaseDefence { get { return _baseDefence ; } }
+        public int BaseStrength { get; set; } = 10;
+        public int BaseDefence { get; set; } = 10;
         public int OriginalHealth { get; set; } = 100;
         public int CurrentHealth { get; set; } = 100;
         public Weapon EquippedWeapon { get; set; }
         public Armour EquippedArmour { get; set; }
 
+        public Game game { get; set; }
         public Hero(string name, int baseStrength, int baseDefence, Weapon equippedWeapon, Armour equippedArmor)
         {
             Name = name;
-            _baseStrength = baseStrength;
-            _baseDefence = baseDefence;
+            BaseStrength = baseStrength;
+            BaseDefence = baseDefence;
             EquippedWeapon = equippedWeapon;
             EquippedArmour = equippedArmor;
         }
@@ -38,8 +36,8 @@ namespace OOPGameAssignment
         }
         public void GetInventory()
         {
-            Console.WriteLine($"Equipped Weapon: {EquippedWeapon}");
-            Console.WriteLine($"Equipped Armour: {EquippedArmour}");
+            Console.WriteLine($"Equipped Weapon: {EquippedWeapon.Name} Damage: {EquippedWeapon.WeaponPower}");
+            Console.WriteLine($"Equipped Armour: {EquippedArmour.Name} Defence: {EquippedArmour.ArmourPower}");
         }
         public void EquipWeapon(Weapon weapon)
         {
@@ -49,6 +47,7 @@ namespace OOPGameAssignment
         public void EquipArmor(Armour armour)
         {
             EquippedArmour = armour;
+            BaseDefence += armour.ArmourPower;
         }
     }
 }

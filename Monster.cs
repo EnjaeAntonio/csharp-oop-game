@@ -14,13 +14,13 @@ namespace OOPGameAssignment
         public int OriginalHealth { get; set; }
         public int CurrentHealth { get; set; }
 
-        public Monster(string name, int strength, int defense, int originalHealth)
+        public Monster(string name, int strength, int defense, int originalHealth, int currentHealth)
         {
             Name = name;
             Strength = strength;
             Defense = defense;
             OriginalHealth = originalHealth;
-            CurrentHealth = CurrentHealth;
+            CurrentHealth = currentHealth;
         }
     }
 }
