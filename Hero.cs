@@ -15,15 +15,17 @@ namespace OOPGameAssignment
         public int CurrentHealth { get; set; } = 100;
         public Weapon EquippedWeapon { get; set; }
         public Armour EquippedArmour { get; set; }
+        public int Coins { get; set; }
 
         public Game game { get; set; }
-        public Hero(string name, int baseStrength, int baseDefence, Weapon equippedWeapon, Armour equippedArmor)
+        public Hero(string name, int baseStrength, int baseDefence, Weapon equippedWeapon, Armour equippedArmor, int coins)
         {
             Name = name;
             BaseStrength = baseStrength;
             BaseDefence = baseDefence;
             EquippedWeapon = equippedWeapon;
             EquippedArmour = equippedArmor;
+            Coins = coins;
         }
         public void DisplayStats()
         {

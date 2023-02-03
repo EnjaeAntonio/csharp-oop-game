@@ -30,9 +30,9 @@ namespace OOPGameAssignment
     {
         new Armour("Leather", 5),
         new Armour("Chainmail", 10),
-        new Armour("Plate", 15),
-        new Armour("Demonic Plate", 20),
-        new Armour("Divine Plate", 25)
+        new Armour("Plate", 12),
+        new Armour("Demonic Plate", 15),
+        new Armour("Divine Plate", 20)
     };
         public Fight Fight { get; set; }
         
@@ -90,6 +90,7 @@ namespace OOPGameAssignment
 
         private void FightSequence()
         {
+            
             Console.WriteLine("Choose a monster to fight!");
             for (int i = 0; i < Monster.Count; i++)
             {
@@ -115,16 +116,15 @@ namespace OOPGameAssignment
                 if (hero.CurrentHealth <= 0)
                 {
                     Fight.Lose();
-                    isRunning= false;
+                    isRunning = false;
                 }
                 else if (monster.CurrentHealth <= 0)
                 {
                     Fight.Win();
-                    isRunning= false;
+                    isRunning = false;
                 }
+                Fight.ResetHealth();
             }
-
-        
         }
 
         private void ChooseWeapon()

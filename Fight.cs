@@ -44,11 +44,16 @@ namespace OOPGameAssignment
                     else
                     {
                         Console.WriteLine("No more potions left.");
-                    }
+                    }   
                     break;
             }
         }
 
+        public void ResetHealth()
+        {
+            Hero.CurrentHealth = Hero.OriginalHealth;
+            Monster.CurrentHealth = Monster.OriginalHealth;
+        }
         public void MonsterTurn()
         {
             int damage = Monster.Strength - Hero.BaseDefence - Hero.EquippedArmour.ArmourPower;
