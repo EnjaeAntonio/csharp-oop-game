@@ -9,12 +9,12 @@ namespace OOPGameAssignment
     public class Weapon
     {
         public string Name { get; set; }
-        public int PowerLevel { get; set; }
+        public int WeaponPower { get; set; }
 
-        public Weapon (string name, int powerLevel)
+        public Weapon (string name, int weaponPower)
         {
             Name = name;
-            PowerLevel = powerLevel;
+            WeaponPower = weaponPower;
         }
     }
 }
