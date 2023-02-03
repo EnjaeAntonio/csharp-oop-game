@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OOPGameAssignment
@@ -68,6 +69,8 @@ namespace OOPGameAssignment
             if (Monster.CurrentHealth <= 0)
             {
                 Console.WriteLine($"{Hero.Name} has defeated {Monster.Name} in an epic battle!");
+                Hero.Coins += Monster.CoinReward;
+                Console.WriteLine($"You won the fight and earned {Monster.CoinReward}");
             }
         }
 

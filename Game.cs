@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace OOPGameAssignment
         private Monster monster;
         public List<Monster> Monster = new List<Monster>
     {
-        new Monster("Goblin", 10, 5, 20, 20),
-        new Monster("Orc", 20, 15, 40, 20),
-        new Monster("Troll", 30, 15, 50, 50),
-        new Monster("Dragon", 40, 50, 150, 150),
-        new Monster("Demon", 50, 25, 200, 200)
+        new Monster("Goblin", 10, 5, 20, 20, 1),
+        new Monster("Orc", 20, 15, 40, 20, 2),
+        new Monster("Troll", 30, 15, 50, 50, 5),
+        new Monster("Dragon", 40, 50, 150, 150, 10),
+        new Monster("Demon", 50, 25, 200, 200, 15)
     };
         private List<Weapon> Weapons = new List<Weapon>
     {
@@ -56,6 +57,7 @@ namespace OOPGameAssignment
                 Console.WriteLine("3. Stats");
                 Console.WriteLine("4. Change Weapon");
                 Console.WriteLine("5. Change Armour");
+                Console.WriteLine("6. Upgrade your Character");
                 Console.WriteLine("6. Quit");
                 Console.WriteLine("Enter your choice");
 
@@ -78,6 +80,9 @@ namespace OOPGameAssignment
                         ChooseArmour();
                         break;
                     case 6:
+                        Upgrade();
+                        break;
+                    case 7:
                         Console.WriteLine("Exiting the game");
                         break;
                     default:
@@ -124,6 +129,82 @@ namespace OOPGameAssignment
                     isRunning = false;
                 }
                 Fight.ResetHealth();
+            }
+        }
+
+        private void Upgrade()
+        {
+            Console.WriteLine("--- Upgrade Your Character ---");
+            Console.WriteLine("1. Increase Base Strength");
+            Console.WriteLine("2. Increase Base Defence");
+            Console.WriteLine("3. Increase Current Health");
+            Console.WriteLine("4. Exit");
+            int choice = Int32.Parse(Console.ReadLine());
+
+            if(choice == 1)
+            {
+                Console.WriteLine($"Coins: {hero.Coins}");
+                Console.WriteLine($"1 Coin = 1 Strength");
+                Console.WriteLine("Enter how many coins you would like to spend");
+                int coinsSpent = Int32.Parse(Console.ReadLine());
+                if (coinsSpent <= hero.Coins)
+                {
+                    hero.Coins -= coinsSpent;
+                    hero.BaseStrength += coinsSpent;
+                    Console.WriteLine($"Your strength is now {hero.BaseStrength}");
+                }
+                else
+                {
+                    Console.WriteLine($"Insufficient funds, choose another amount");
+                    coinsSpent = Int32.Parse(Console.ReadLine());
+                }
+            }
+            else if (choice == 2)
+            {
+                Console.WriteLine($"Coins: {hero.Coins}");
+                Console.WriteLine($"1 Coin = 1 Defence");
+                Console.WriteLine("Enter how many coins you would like to spend");
+                int coinsSpent = Int32.Parse(Console.ReadLine());
+
+                if (coinsSpent <= hero.Coins)
+                {
+                    hero.Coins -= coinsSpent;
+                    hero.BaseDefence += coinsSpent;
+                    Console.WriteLine($"Your defence is now {hero.BaseDefence}");
+
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"Insufficient funds, choose another amount");
+                    coinsSpent = Int32.Parse(Console.ReadLine());
+                }
+            } else if (choice == 3)
+            {
+                Console.WriteLine($"Coins: {hero.Coins}");
+                Console.WriteLine($"1 Coin = 1 Health");
+                Console.WriteLine("Enter how many coins you would like to spend");
+                int coinsSpent = Int32.Parse(Console.ReadLine());
+
+                if (coinsSpent <= hero.Coins)
+                {
+                    hero.Coins -= coinsSpent;
+                    hero.CurrentHealth += coinsSpent;
+                    Console.WriteLine($"Your health is now {hero.CurrentHealth}");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"Insufficient funds, choose another amount");
+                    coinsSpent = Int32.Parse(Console.ReadLine());
+                }
+            }else if (choice == 4)
+            {
+                Console.WriteLine("You did not spend any coins.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please choose a number between 1 and 4.");
             }
         }
 
