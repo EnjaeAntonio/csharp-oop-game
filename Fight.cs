@@ -22,33 +22,72 @@ namespace OOPGameAssignment
         }
         public void HeroTurn(Monster monsterObject)
         {
-            Console.WriteLine("Hero's turn");
-            Console.WriteLine("1. Attack");
-            Console.WriteLine("2. Use Potion");
+            Console.WriteLine($"{Hero.Name}'s turn!");
+            Console.WriteLine("1. Light Attack");
+            Console.WriteLine("2. Heavy Attack");
+            Console.WriteLine("3. Use Potion");
             int choice = Int32.Parse(Console.ReadLine());
             switch (choice)
             {
                 case 1:
-                    int damage = Hero.BaseStrength + Hero.EquippedWeapon.WeaponPower;
-                    Monster.CurrentHealth -= damage;
-                    Console.WriteLine("--- Hero ---");
-                    Console.WriteLine($"{Hero.Name} deals {damage} damage to {Monster.Name}!");
-                    Console.WriteLine($"{Monster.Name} has {Monster.CurrentHealth} health remaining");
-                    Console.WriteLine();
+                    LightAttack();
                     break;
                 case 2:
-                    if (potion > 0)
-                    {
-                        Hero.CurrentHealth += 20;
-                        Console.WriteLine($"{Hero.Name} uses a potion and restores 20 health.");
-                        Console.WriteLine($"{Hero.Name} now has {Hero.CurrentHealth} health.");
-                        potion--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("No more potions left.");
-                    }   
+                    HeavyAttack();
                     break;
+                case 3:
+                    UsePotion();
+                    break;
+            }
+        }
+
+        public void LightAttack()
+        {
+            int heroDamage = Hero.BaseStrength + Hero.EquippedWeapon.WeaponPower;
+            Monster.CurrentHealth -= heroDamage;
+            Console.WriteLine("--- Hero ---");
+            Console.WriteLine($"{Hero.Name} deals {heroDamage} damage to {Monster.Name}!");
+            Console.WriteLine($"{Monster.Name} has {Monster.CurrentHealth} health remaining");
+            Console.WriteLine();
+        }
+        
+        public void HeavyAttack()
+        {
+            if (Hero.EquippedWeapon.NumOfSpecial > 0)
+            {
+                int specialAttack = Hero.EquippedWeapon.SpecialAttack;
+                Monster.CurrentHealth -= specialAttack;
+                Hero.EquippedWeapon.NumOfSpecial--;
+                Console.WriteLine("--- Hero ---");
+                Console.WriteLine($"{Hero.Name} deals {specialAttack} damage to {Monster.Name}!");
+                Console.WriteLine($"{Monster.Name} has {Monster.CurrentHealth} health remaining");
+                Console.WriteLine($" You have {Hero.EquippedWeapon.NumOfSpecial} Heavy Attacks left!");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("You are out of special attacks!");
+
+            }
+        }
+
+        public void ResetHeavyAttack()
+        {
+            Hero.EquippedWeapon.NumOfSpecial = Hero.EquippedWeapon.OriginalNumOfSpecial;
+        }
+
+        public void UsePotion()
+        {
+            if (potion > 0)
+            {
+                Hero.CurrentHealth += 20;
+                Console.WriteLine($"{Hero.Name} uses a potion and restores 20 health.");
+                Console.WriteLine($"{Hero.Name} now has {Hero.CurrentHealth} health.");
+                potion--;
+            }
+            else
+            {
+                Console.WriteLine("No more potions left.");
             }
         }
 
@@ -60,9 +99,9 @@ namespace OOPGameAssignment
         public void MonsterTurn()
         {
             Console.WriteLine("--- Monster ---");
-            int damage = Monster.Strength - (Hero.BaseDefence + Hero.EquippedArmour.ArmourPower);
-            Hero.CurrentHealth -= damage;
-            Console.WriteLine($"{Monster.Name} deals {damage} damage to {Hero.Name}!");
+            int monsterDamage = Monster.Strength - (Hero.BaseDefence + Hero.EquippedArmour.ArmourPower);
+            Hero.CurrentHealth -= monsterDamage;
+            Console.WriteLine($"{Monster.Name} deals {monsterDamage} damage to {Hero.Name}!");
             Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
             Console.WriteLine();
         }
@@ -74,7 +113,7 @@ namespace OOPGameAssignment
             {
                 Console.WriteLine($"{Hero.Name} has defeated {Monster.Name} in an epic battle!");
                 Hero.Coins += Monster.CoinReward;
-                Console.WriteLine($"You won the fight and earned {Monster.CoinReward}");
+                Console.WriteLine($"You won the fight and earned {Monster.CoinReward} coins!");
             }
         }
 

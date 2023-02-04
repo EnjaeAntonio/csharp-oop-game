@@ -31,16 +31,20 @@ namespace OOPGameAssignment
         }
         public void DisplayStats()
         {
+            Console.WriteLine();
             Console.WriteLine("Stats");
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Base Strength: {BaseStrength}");
             Console.WriteLine($"Base Defence: {BaseDefence}");
             Console.WriteLine($"Health: {CurrentHealth}");
+            Console.WriteLine();
         }
         public void GetInventory()
         {
+            Console.WriteLine();
             Console.WriteLine($"Equipped Weapon: {EquippedWeapon.Name} Damage: {EquippedWeapon.WeaponPower}");
             Console.WriteLine($"Equipped Armour: {EquippedArmour.Name} Defence: {EquippedArmour.ArmourPower}");
+            Console.WriteLine();
         }
         public void EquipWeapon(Weapon weapon)
         {

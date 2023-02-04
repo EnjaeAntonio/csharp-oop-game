@@ -11,21 +11,21 @@ namespace OOPGameAssignment
     {
         private Hero hero;
         private Monster monster;
-        public List<Monster> Monster = new List<Monster>
+        private List<Monster> Monster = new List<Monster>
     {
-        new Monster("Goblin", 15, 10, 20, 50, 3),
-        new Monster("Orc", 20, 15, 40, 60, 5),
-        new Monster("Troll", 30, 15, 50, 75, 7),
-        new Monster("Dragon", 40, 50, 150, 150, 12),
-        new Monster("Demon", 50, 25, 200, 200, 18)
+        new Monster("Goblin", 15, 10, 50, 50, 3),
+        new Monster("Orc", 20, 20, 60, 60, 5),
+        new Monster("Troll", 30, 25, 75, 75, 7),
+        new Monster("Dragon", 50, 50, 150, 150, 12),
+        new Monster("Demon", 75, 75, 200, 200, 18)
     };
         private List<Weapon> Weapons = new List<Weapon>
     {
-        new Weapon("Dagger", 5),
-        new Weapon("Sword", 10),
-        new Weapon("Mace", 15),
-        new Weapon("Axe", 20),
-        new Weapon("Greatsword", 25)
+        new Weapon("Dagger", 5, 15, 5, 5),
+        new Weapon("Sword", 10, 20, 4, 4),
+        new Weapon("Mace", 15, 30, 3, 3),
+        new Weapon("Axe", 20, 40, 2, 2),
+        new Weapon("Greatsword", 25, 75, 1, 1)
     };
         private List<Armour> Armours = new List<Armour>
     {
@@ -43,8 +43,8 @@ namespace OOPGameAssignment
         }
         public void Start()
         {
-            Console.WriteLine($"Welcome to the game!");
-            Console.WriteLine("Please State your name!");
+            Console.WriteLine($"Welcome to Edge's Conquerer!");
+            Console.WriteLine("Enter your username!");
             hero.Name = Console.ReadLine();
 
             bool running = true;
@@ -84,6 +84,7 @@ namespace OOPGameAssignment
                         break;
                     case 7:
                         Console.WriteLine("Exiting the game");
+                        running = false;
                         break;
                     default:
                         Console.WriteLine("Error input try again");
@@ -112,6 +113,7 @@ namespace OOPGameAssignment
             {
                 while (hero.CurrentHealth > 0 && monster.CurrentHealth > 0)
                 {
+                    Console.WriteLine($"Now attacking {monster.Name}!");
                     Fight.HeroTurn(monster);
                     if (monster.CurrentHealth > 0)
                     {
@@ -129,6 +131,7 @@ namespace OOPGameAssignment
                     isRunning = false;
                 }
                 Fight.ResetHealth();
+                Fight.ResetHeavyAttack();
             }
         }
 

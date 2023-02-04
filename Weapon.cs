@@ -10,11 +10,17 @@ namespace OOPGameAssignment
     {
         public string Name { get; set; }
         public int WeaponPower { get; set; }
+        public int SpecialAttack { get; set; }
+        public int NumOfSpecial { get; set; }
+        public int OriginalNumOfSpecial { get; set; }
 
-        public Weapon (string name, int weaponPower)
+        public Weapon (string name, int weaponPower, int specialAttack, int numOfSpecial, int originalNumOfSpecial )
         {
             Name = name;
             WeaponPower = weaponPower;
+            SpecialAttack = specialAttack;
+            NumOfSpecial = numOfSpecial;
+            OriginalNumOfSpecial = originalNumOfSpecial;
         }
     }
 }
