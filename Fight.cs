@@ -31,8 +31,10 @@ namespace OOPGameAssignment
                 case 1:
                     int damage = Hero.BaseStrength + Hero.EquippedWeapon.WeaponPower;
                     Monster.CurrentHealth -= damage;
+                    Console.WriteLine("--- Hero ---");
                     Console.WriteLine($"{Hero.Name} deals {damage} damage to {Monster.Name}!");
                     Console.WriteLine($"{Monster.Name} has {Monster.CurrentHealth} health remaining");
+                    Console.WriteLine();
                     break;
                 case 2:
                     if (potion > 0)
@@ -57,10 +59,12 @@ namespace OOPGameAssignment
         }
         public void MonsterTurn()
         {
-            int damage = Monster.Strength - Hero.BaseDefence - Hero.EquippedArmour.ArmourPower;
+            Console.WriteLine("--- Monster ---");
+            int damage = Monster.Strength - (Hero.BaseDefence + Hero.EquippedArmour.ArmourPower);
             Hero.CurrentHealth -= damage;
             Console.WriteLine($"{Monster.Name} deals {damage} damage to {Hero.Name}!");
             Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
+            Console.WriteLine();
         }
 
 

@@ -9,18 +9,20 @@ namespace OOPGameAssignment
     public class Hero
     {
         public string Name { get; set; }
-        public int BaseStrength { get; set; } = 10;
-        public int BaseDefence { get; set; } = 10;
-        public int OriginalHealth { get; set; } = 100;
-        public int CurrentHealth { get; set; } = 100;
+        public int BaseStrength { get; set; }
+        public int BaseDefence { get; set; }
+        public int OriginalHealth { get; set; }
+        public int CurrentHealth { get; set; }
         public Weapon EquippedWeapon { get; set; }
         public Armour EquippedArmour { get; set; }
         public int Coins { get; set; }
 
         public Game game { get; set; }
-        public Hero(string name, int baseStrength, int baseDefence, Weapon equippedWeapon, Armour equippedArmor, int coins)
+        public Hero(string name, int baseStrength, int baseDefence, int originalHealth, int currentHealth, Weapon equippedWeapon, Armour equippedArmor, int coins)
         {
             Name = name;
+            OriginalHealth= originalHealth;
+            CurrentHealth= currentHealth;
             BaseStrength = baseStrength;
             BaseDefence = baseDefence;
             EquippedWeapon = equippedWeapon;
@@ -33,8 +35,7 @@ namespace OOPGameAssignment
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Base Strength: {BaseStrength}");
             Console.WriteLine($"Base Defence: {BaseDefence}");
-            Console.WriteLine($"Original Health: {OriginalHealth}");
-            Console.WriteLine($"Current Health: {CurrentHealth}");
+            Console.WriteLine($"Health: {CurrentHealth}");
         }
         public void GetInventory()
         {
