@@ -31,7 +31,7 @@ namespace OOPGameAssignment
     {
         new Armour("Leather", 5),
         new Armour("Chainmail", 10),
-        new Armour("Plate", 12),
+        new Armour("Armor Plate", 12),
         new Armour("Demonic Plate", 15),
         new Armour("Divine Plate", 20)
     };
@@ -103,7 +103,7 @@ namespace OOPGameAssignment
                 Console.WriteLine($"{i + 1}. {Monster[i].Name}");
             }
             Console.WriteLine("Enter the number of the monster you want to fight:");
-            int monsterChoice = Convert.ToInt32(Console.ReadLine());
+            int monsterChoice = Int32.Parse(Console.ReadLine());
             monster = Monster[monsterChoice - 1];
             Fight = new Fight(hero, monster);
 
@@ -111,6 +111,7 @@ namespace OOPGameAssignment
 
             while (isRunning)
             {
+                hero.GamesPlayed++;
                 while (hero.CurrentHealth > 0 && monster.CurrentHealth > 0)
                 {
                     Console.WriteLine($"Now attacking {monster.Name}!");
@@ -122,11 +123,13 @@ namespace OOPGameAssignment
                 }
                 if (hero.CurrentHealth <= 0)
                 {
+                    hero.CurrentHealth= 0;
                     Fight.Lose();
                     isRunning = false;
                 }
                 else if (monster.CurrentHealth <= 0)
                 {
+                    monster.CurrentHealth = 0;
                     Fight.Win();
                     isRunning = false;
                 }
@@ -235,7 +238,7 @@ namespace OOPGameAssignment
                 Console.WriteLine($"{i + 1}. {Armours[i].Name} ({Armours[i].ArmourPower})");
             }
             Console.WriteLine("Enter the number of armour you want to equip");
-            int armourChoice= Int32.Parse(Console.ReadLine());
+            int armourChoice = Int32.Parse(Console.ReadLine());
             hero.EquipArmor(Armours[armourChoice - 1]);
         }
     }
