@@ -44,7 +44,23 @@ namespace OOPGameAssignment
                     return;
             }
         }
-
+        public void MonsterTurn()
+        {
+            Console.WriteLine("--- Monster ---");
+            int monsterDamage = Monster.Strength - (Hero.BaseDefence + Hero.EquippedArmour.ArmourPower);
+            Hero.CurrentHealth -= monsterDamage;
+            Console.WriteLine($"{Monster.Name} deals {monsterDamage} damage to {Hero.Name}!");
+            if (Hero.CurrentHealth <= 0)
+            {
+                Hero.CurrentHealth = 0;
+                Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
+            }
+            else
+            {
+                Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
+            }
+            Console.WriteLine();
+        }
         public void LightAttack()
         {
             int heroDamage = Hero.BaseStrength + Hero.EquippedWeapon.WeaponPower;
@@ -61,7 +77,6 @@ namespace OOPGameAssignment
             }
             Console.WriteLine();
         }
-        
         public void HeavyAttack()
         {
             if (Hero.EquippedWeapon.NumOfSpecial > 0)
@@ -89,7 +104,6 @@ namespace OOPGameAssignment
 
             }
         }
-
         public void ResetHeavyAttack()
         {
             Hero.EquippedWeapon.NumOfSpecial = Hero.EquippedWeapon.OriginalNumOfSpecial;
@@ -115,23 +129,6 @@ namespace OOPGameAssignment
             Hero.CurrentHealth = Hero.OriginalHealth;
             Monster.CurrentHealth = Monster.OriginalHealth;
         }
-        public void MonsterTurn()
-        {
-            Console.WriteLine("--- Monster ---");
-            int monsterDamage = Monster.Strength - (Hero.BaseDefence + Hero.EquippedArmour.ArmourPower);
-            Hero.CurrentHealth -= monsterDamage;
-            Console.WriteLine($"{Monster.Name} deals {monsterDamage} damage to {Hero.Name}!");
-            if(Hero.CurrentHealth <= 0)
-            {
-                Hero.CurrentHealth = 0;
-                Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
-            } else
-            {
-                Console.WriteLine($"{Hero.Name} has {Hero.CurrentHealth} health remaining");
-            }
-            Console.WriteLine();
-        }
-
 
         public void Win()
         {
@@ -144,7 +141,6 @@ namespace OOPGameAssignment
                 Console.WriteLine($"You won the fight and earned {Monster.CoinReward} coins!");
             }
         }
-
         public void Lose()
         {
             if (Hero.CurrentHealth <= 0)
@@ -153,6 +149,5 @@ namespace OOPGameAssignment
                 Console.WriteLine($"{Hero.Name} has been defeated by {Monster.Name}");
             }
         }
-
     }
 }

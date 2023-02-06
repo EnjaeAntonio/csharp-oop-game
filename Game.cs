@@ -93,7 +93,7 @@ namespace OOPGameAssignment
                 }
             }
         }
-
+        int monsterChoice;
         private void FightSequence()
         {
             
@@ -102,9 +102,18 @@ namespace OOPGameAssignment
             {
                 Console.WriteLine($"{i + 1}. {Monster[i].Name}");
             }
-            Console.WriteLine("Enter the number of the monster you want to fight:");
-            int monsterChoice = Int32.Parse(Console.ReadLine());
-            monster = Monster[monsterChoice - 1];
+            while(monsterChoice !< 1 && monsterChoice < 6) 
+            {
+                Console.WriteLine("Enter the number of the monster you want to fight:");
+                monsterChoice = Int32.Parse(Console.ReadLine());
+                monster = Monster[monsterChoice - 1];
+                if (monsterChoice <= 0 || monsterChoice > 6)
+                {
+                    Console.WriteLine("Please choose a valid monster");
+                    monsterChoice = Int32.Parse(Console.ReadLine());
+                }
+            }
+        
             Fight = new Fight(hero, monster);
 
             bool isRunning = true;

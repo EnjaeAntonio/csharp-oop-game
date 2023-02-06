@@ -43,7 +43,7 @@ namespace OOPGameAssignment
             Console.WriteLine($"Fights Won: {FightsWon}");
             Console.WriteLine($"Fights Lost: {FightsLost}");
             Console.WriteLine();
-        }te
+        }
 
         public void GetInventory()
         {
